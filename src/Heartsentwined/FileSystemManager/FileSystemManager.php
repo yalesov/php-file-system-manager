@@ -24,11 +24,10 @@ class FileSystemManager
     }
 
     /**
-     * dirIterator
+     * recursively iterate a directory, listing all directories
      *
-     * @param string $dir path of directory to iterate
-     * @return array *child first
-     *  [] => /path/to/dir
+     * @param string $dir path of directory
+     * @return array each member being /path/to/dir (child-first)
      */
     public static function dirIterator($dir)
     {

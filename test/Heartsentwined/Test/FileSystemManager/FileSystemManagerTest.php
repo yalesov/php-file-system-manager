@@ -55,8 +55,48 @@ class FileSystemManagerTest extends \PHPUnit_Framework_TestCase
     /**
      * @depends testRrmdir
      */
-    public function testRrcopy()
+    public function testRcopy()
     {
+        $this->assertTrue(FileSystemManager::rcopy('foo', 'bar'));
+        $this->assertTrue(is_dir('bar'));
+        $this->assertTrue(is_file('bar/foo1'));
+        $this->assertTrue(is_file('bar/foo2'));
+        $this->assertTrue(is_dir('bar/bar'));
+        $this->assertTrue(is_dir('bar/bar/bar'));
+        $this->assertTrue(is_file('bar/bar/bar1'));
+        $this->assertTrue(is_dir('bar/baz'));
+
+        FileSystemManager::rrmdir('bar');
+    }
+
+    /**
+     * @depends testRrmdir
+     */
+    public function testRcopyExistingDir()
+    {
+        mkdir('bar');
+        mkdir('bar/bar');
+
+        $this->assertTrue(FileSystemManager::rcopy('foo', 'bar'));
+        $this->assertTrue(is_dir('bar'));
+        $this->assertTrue(is_file('bar/foo1'));
+        $this->assertTrue(is_file('bar/foo2'));
+        $this->assertTrue(is_dir('bar/bar'));
+        $this->assertTrue(is_dir('bar/bar/bar'));
+        $this->assertTrue(is_file('bar/bar/bar1'));
+        $this->assertTrue(is_dir('bar/baz'));
+
+        FileSystemManager::rrmdir('bar');
+    }
+
+    /**
+     * @depends testRrmdir
+     */
+    public function testRcopyExistingFile()
+    {
+        mkdir('bar');
+        touch('bar/foo1');
+
         $this->assertTrue(FileSystemManager::rcopy('foo', 'bar'));
         $this->assertTrue(is_dir('bar'));
         $this->assertTrue(is_file('bar/foo1'));

@@ -11,11 +11,49 @@ A collection of often-used file and directory management functions not present i
 ```json
 {
     "require": {
-        "heartsentwined/file-system-manager": "dev-master"
+        "heartsentwined/file-system-manager": "1.*"
     }
 }
 ```
 
 # Usage
 
-todo
+Recursively iterate the directory `foo`, listing all files (child-last):
+
+```php
+use \Heartsentwined\FileSystemManager\FileSystemManager;
+foreach (FileSystemManager::fileIterator('foo') as $file) {
+    echo $file; // /path/to/file
+}
+```
+
+Recursively iterate the directory `foo`, listing all files (child-first):
+
+```php
+use \Heartsentwined\FileSystemManager\FileSystemManager;
+foreach (FileSystemManager::dirIterator('foo') as $dir) {
+    echo $dir; // /path/to/child/dir
+}
+```
+
+Recursive [rmdir](http://php.net/manual/en/function.rmdir.php): remove the directory `foo` along with all child directoriess and files
+
+```php
+use \Heartsentwined\FileSystemManager\FileSystemManager;
+FileSystemManager::rrmdir('foo');
+```
+
+Recursive [copy](http://php.net/manual/en/function.copy.php): copy the directory `foo` to `bar` along with all child directoriess and files
+
+**Warning: this function overwrites existing files**
+
+```php
+use \Heartsentwined\FileSystemManager\FileSystemManager;
+FileSystemManager::rcopy('foo', 'bar');
+```
+
+`rcopy` will copy into existing directories if they already exist. By default, it will create non-existent directories with permission `0755`. You can change this by specifying the third parameter:
+
+```php
+FileSystemManager::rcopy('foo', 'bar', 0777);
+```
