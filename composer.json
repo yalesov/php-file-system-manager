@@ -1,5 +1,5 @@
 {
-    "name": "heartsentwined/file-sys-manager",
+    "name": "heartsentwined/file-system-manager",
     "description": "A collection of often-used file and directory management functions not present in PHP core.",
     "license": "GPL-3.0",
     "keywords": ["file", "directory", "dir", "manager", "system"],
