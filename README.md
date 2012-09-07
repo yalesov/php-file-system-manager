@@ -27,7 +27,7 @@ foreach (FileSystemManager::fileIterator('foo') as $file) {
 }
 ```
 
-Recursively iterate the directory `foo`, listing all files (child-first):
+Recursively iterate the directory `foo`, listing all directories (child-first):
 
 ```php
 use \Heartsentwined\FileSystemManager\FileSystemManager;
