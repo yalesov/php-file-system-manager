@@ -45,7 +45,7 @@ class FileSystemManager
      * @see http://www.php.net/manual/en/function.rmdir.php
      *
      * @param string $dir directory
-     * @return bool (true on success)
+     * @return bool
      */
     public static function rrmdir($dir)
     {
@@ -70,7 +70,7 @@ class FileSystemManager
      * @param string $src source file or dir
      * @param string $dst destination file or dir
      * @param int $dstPerm destination dir permission, if dir not exists
-     * @return bool (true on success)
+     * @return bool
      */
     public static function rcopy($src, $dst, $dstPerm = 0755)
     {
@@ -96,6 +96,14 @@ class FileSystemManager
         return $status;
     }
 
+    /**
+     * recursive chmod()
+     * @see http://serversideguy.com/2009/11/08/php-recursively-chmod-chown-and-chgrp/
+     *
+     * @param string $path
+     * @param int|string $mode 'numeric'
+     * @return bool
+     */
     public static function rchmod($path, $mode)
     {
         ArgValidator::assert($path, 'string');
@@ -118,6 +126,14 @@ class FileSystemManager
         return chmod($path, $mode);
     }
 
+    /**
+     * recursive chown()
+     * @see http://serversideguy.com/2009/11/08/php-recursively-chmod-chown-and-chgrp/
+     *
+     * @param string $path
+     * @param strin $owner
+     * @return bool
+     */
     public static function rchown($path, $owner)
     {
         ArgValidator::assert($path, 'string');
@@ -140,6 +156,14 @@ class FileSystemManager
         return chown($path, $owner);
     }
 
+    /*
+     * recursive chgrp()
+     * @see http://serversideguy.com/2009/11/08/php-recursively-chmod-chown-and-chgrp/
+     *
+     * @param string $path
+     * @param strin $group
+     * @return bool
+     */
     public static function rchgrp($path, $group)
     {
         ArgValidator::assert($path, 'string');
