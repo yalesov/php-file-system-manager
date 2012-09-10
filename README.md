@@ -57,3 +57,24 @@ FileSystemManager::rcopy('foo', 'bar');
 ```php
 FileSystemManager::rcopy('foo', 'bar', 0777);
 ```
+
+Recursive [chmod](http://php.net/manual/en/function.chmod.php): chmod the directory `foo` to `0755`, along with all child directoriess and files
+
+```php
+use \Heartsentwined\FileSystemManager\FileSystemManager;
+FileSystemManager::rchmod('foo', 0755);
+```
+
+Recursive [chown](http://php.net/manual/en/function.chown.php): chown the directory `foo` to `www-data`, along with all child directoriess and files
+
+```php
+use \Heartsentwined\FileSystemManager\FileSystemManager;
+FileSystemManager::rchown('foo', 'www-data');
+```
+
+Recursive [chgrp](http://php.net/manual/en/function.chgrp.php): chgrp the directory `foo` to `www-data`, along with all child directoriess and files
+
+```php
+use \Heartsentwined\FileSystemManager\FileSystemManager;
+FileSystemManager::rchown('foo', 'www-data');
+```
