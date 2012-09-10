@@ -1,6 +1,6 @@
 {
     "name": "heartsentwined/file-system-manager",
-    "description": "A collection of often-used file and directory management functions not present in PHP core.",
+    "description": "A collection of file and directory management functions.",
     "license": "GPL-3.0",
     "keywords": ["file", "directory", "dir", "manager", "system"],
     "homepage": "https://github.com/heartsentwined/file-system-manager",
