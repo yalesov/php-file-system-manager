@@ -117,7 +117,7 @@ class FileSystemManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse(is_dir('qux'));
         $this->assertFalse(is_dir('qux1'));
         $this->assertFalse(is_dir('qux2.f'));
-        mkdir('qux/qux1', 0755);
+        mkdir('qux/qux1', 0755, true);
         touch('qux/qux1/qux2.f');
 
         $this->assertTrue(
@@ -140,7 +140,7 @@ class FileSystemManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse(is_dir('qux'));
         $this->assertFalse(is_dir('qux1'));
         $this->assertFalse(is_dir('qux2.f'));
-        mkdir('qux/qux1', 0755);
+        mkdir('qux/qux1', 0755, true);
         touch('qux/qux1/qux2.f');
 
         $stat = stat('qux');
@@ -176,7 +176,7 @@ class FileSystemManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse(is_dir('qux'));
         $this->assertFalse(is_dir('qux1'));
         $this->assertFalse(is_dir('qux2.f'));
-        mkdir('qux/qux1', 0755);
+        mkdir('qux/qux1', 0755, true);
         touch('qux/qux1/qux2.f');
 
         $stat = stat('qux');
