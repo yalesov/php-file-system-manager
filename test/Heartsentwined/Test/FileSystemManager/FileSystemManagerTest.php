@@ -122,11 +122,11 @@ class FileSystemManagerTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue(
             FileSystemManager::rchmod('rchmod/rchmod1/rchmod2.f', 0444));
-        $this->assertEquals(1444,
+        $this->assertEquals('1444',
             substr(sprintf('%o', fileperms('rchmod')), -4));
-        $this->assertEquals(1444,
+        $this->assertEquals('1444',
             substr(sprintf('%o', fileperms('rchmod/rchmod1')), -4));
-        $this->assertEquals(0444,
+        $this->assertEquals('0444',
             substr(sprintf('%o', fileperms('rchmod/rchmod1/rchmod2.f')), -4));
 
         FileSystemManager::rrmdir('rchmod');
