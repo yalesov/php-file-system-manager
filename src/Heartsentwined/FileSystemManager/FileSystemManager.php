@@ -121,7 +121,7 @@ class FileSystemManager
     public static function rchown($path, $owner)
     {
         ArgValidator::assert($path, 'string');
-        ArgValidator::assert($owner, 'numeric');
+        ArgValidator::assert($owner, 'string');
 
         if (!is_dir($path)) return chown($path, $owner);
 
@@ -143,7 +143,7 @@ class FileSystemManager
     public static function rchgrp($path, $group)
     {
         ArgValidator::assert($path, 'string');
-        ArgValidator::assert($group, 'numeric');
+        ArgValidator::assert($group, 'string');
 
         if (!is_dir($path)) return chgrp($path, $group);
 
