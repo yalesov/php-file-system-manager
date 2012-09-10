@@ -95,4 +95,22 @@ class FileSystemManager
 
         return $status;
     }
+
+    public static function rchmod($path, $mode)
+    {
+        ArgValidator::assert($path, 'string');
+        ArgValidator::assert($mode, 'numeric');
+    }
+
+    public static function rchown($path, $owner)
+    {
+        ArgValidator::assert($path, 'string');
+        ArgValidator::assert($owner, 'numeric');
+    }
+
+    public static function rchgrp($path, $group)
+    {
+        ArgValidator::assert($path, 'string');
+        ArgValidator::assert($group, 'numeric');
+    }
 }
