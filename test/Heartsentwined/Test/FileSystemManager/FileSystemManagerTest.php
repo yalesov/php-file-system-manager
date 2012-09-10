@@ -8,6 +8,10 @@ class FileSystemManagerTest extends \PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
+        if (!is_dir('tmp')) mkdir('tmp', 0777);
+        $this->wd = realpath(getcwd());
+        chdir('tmp');
+
         mkdir('foo');
         touch('foo/foo1');
         touch('foo/foo2');
@@ -15,6 +19,9 @@ class FileSystemManagerTest extends \PHPUnit_Framework_TestCase
         mkdir('foo/bar/bar');
         touch('foo/bar/bar1');
         mkdir('foo/baz');
+
+        $this->user = 'www-data';
+        $this->group = 'www-data';
     }
 
     public function tearDown()
@@ -26,6 +33,8 @@ class FileSystemManagerTest extends \PHPUnit_Framework_TestCase
         try { unlink('foo/foo1'); } catch (\Exception $e) {}
         try { unlink('foo/foo2'); } catch (\Exception $e) {}
         try { rmdir('foo'); } catch (\Exception $e) {}
+
+        chdir($this->wd);
     }
 
     public function testFileIterator()
@@ -117,7 +126,7 @@ class FileSystemManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse(is_dir('rchmod'));
         $this->assertFalse(is_dir('rchmod1'));
         $this->assertFalse(is_dir('rchmod2.f'));
-        mkdir('rchmod/rchmod1', 0755, true);
+        mkdir('rchmod/rchmod1', 0777, true);
         touch('rchmod/rchmod1/rchmod2.f');
 
         $this->assertTrue(
@@ -140,30 +149,30 @@ class FileSystemManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse(is_dir('rchown'));
         $this->assertFalse(is_dir('rchown1'));
         $this->assertFalse(is_dir('rchown2.f'));
-        mkdir('rchown/rchown1', 0755, true);
+        mkdir('rchown/rchown1', 0777, true);
         touch('rchown/rchown1/rchown2.f');
 
         $stat = stat('rchown');
         $user = posix_getpwuid($stat['uid']);
-        $this->assertNotEquals('nobody', $user['name']);
+        $this->assertNotEquals($this->user, $user['name']);
         $stat = stat('rchown/rchown1');
         $user = posix_getpwuid($stat['uid']);
-        $this->assertNotEquals('nobody', $user['name']);
+        $this->assertNotEquals($this->user, $user['name']);
         $stat = stat('rchown/rchown1/rchown2.f');
         $user = posix_getpwuid($stat['uid']);
-        $this->assertNotEquals('nobody', $user['name']);
+        $this->assertNotEquals($this->user, $user['name']);
 
         $this->assertTrue(
-            FileSystemManager::rchown('rchown/rchown1/rchown2.f', 'nobody'));
+            FileSystemManager::rchown('rchown/rchown1/rchown2.f', $this->user));
         $stat = stat('rchown');
         $user = posix_getpwuid($stat['uid']);
-        $this->assertEquals('nobody', $user['name']);
+        $this->assertEquals($this->user, $user['name']);
         $stat = stat('rchown/rchown1');
         $user = posix_getpwuid($stat['uid']);
-        $this->assertEquals('nobody', $user['name']);
+        $this->assertEquals($this->user, $user['name']);
         $stat = stat('rchown/rchown1/rchown2.f');
         $user = posix_getpwuid($stat['uid']);
-        $this->assertEquals('nobody', $user['name']);
+        $this->assertEquals($this->user, $user['name']);
 
         FileSystemManager::rrmdir('rchown');
     }
@@ -176,30 +185,30 @@ class FileSystemManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse(is_dir('rchgrp'));
         $this->assertFalse(is_dir('rchgrp1'));
         $this->assertFalse(is_dir('rchgrp2.f'));
-        mkdir('rchgrp/rchgrp1', 0755, true);
+        mkdir('rchgrp/rchgrp1', 0777, true);
         touch('rchgrp/rchgrp1/rchgrp2.f');
 
         $stat = stat('rchgrp');
         $user = posix_getgrgid($stat['gid']);
-        $this->assertNotEquals('nobody', $user['name']);
+        $this->assertNotEquals($this->user, $user['name']);
         $stat = stat('rchgrp/rchgrp1');
         $user = posix_getgrgid($stat['gid']);
-        $this->assertNotEquals('nobody', $user['name']);
+        $this->assertNotEquals($this->user, $user['name']);
         $stat = stat('rchgrp/rchgrp1/rchgrp2.f');
         $user = posix_getgrgid($stat['gid']);
-        $this->assertNotEquals('nobody', $user['name']);
+        $this->assertNotEquals($this->user, $user['name']);
 
         $this->assertTrue(
-            FileSystemManager::rchgrp('rchgrp/rchgrp1/rchgrp2.f', 'nobody'));
+            FileSystemManager::rchgrp('rchgrp/rchgrp1/rchgrp2.f', $this->group));
         $stat = stat('rchgrp');
         $user = posix_getgrgid($stat['gid']);
-        $this->assertEquals('nobody', $user['name']);
+        $this->assertEquals($this->user, $user['name']);
         $stat = stat('rchgrp/rchgrp1');
         $user = posix_getgrgid($stat['gid']);
-        $this->assertEquals('nobody', $user['name']);
+        $this->assertEquals($this->user, $user['name']);
         $stat = stat('rchgrp/rchgrp1/rchgrp2.f');
         $user = posix_getgrgid($stat['gid']);
-        $this->assertEquals('nobody', $user['name']);
+        $this->assertEquals($this->user, $user['name']);
 
         FileSystemManager::rrmdir('rchgrp');
     }
