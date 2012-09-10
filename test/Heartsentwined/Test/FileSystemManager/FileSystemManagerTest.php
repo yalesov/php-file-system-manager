@@ -122,11 +122,11 @@ class FileSystemManagerTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue(
             FileSystemManager::rchmod('qux/qux1/qux2.f', 0444));
-        $this->assertSame(1444,
+        $this->assertEquals(1444,
             substr(sprintf('%o', fileperms('qux')), -4));
-        $this->assertSame(1444,
+        $this->assertEquals(1444,
             substr(sprintf('%o', fileperms('qux/qux1')), -4));
-        $this->assertSame(0444,
+        $this->assertEquals(0444,
             substr(sprintf('%o', fileperms('qux/qux1/qux2.f')), -4));
 
         FileSystemManager::rrmdir('qux');
@@ -145,25 +145,25 @@ class FileSystemManagerTest extends \PHPUnit_Framework_TestCase
 
         $stat = stat('qux');
         $user = posix_getpwuid($stat['uid']);
-        $this->assertNotSame('www-data', $user['name']);
+        $this->assertNotEquals('www-data', $user['name']);
         $stat = stat('qux/qux1');
         $user = posix_getpwuid($stat['uid']);
-        $this->assertNotSame('www-data', $user['name']);
+        $this->assertNotEquals('www-data', $user['name']);
         $stat = stat('qux/qux1/qux2.f');
         $user = posix_getpwuid($stat['uid']);
-        $this->assertNotSame('www-data', $user['name']);
+        $this->assertNotEquals('www-data', $user['name']);
 
         $this->assertTrue(
             FileSystemManager::rchown('qux/qux1/qux2.f', 'www-data'));
         $stat = stat('qux');
         $user = posix_getpwuid($stat['uid']);
-        $this->assertSame('www-data', $user['name']);
+        $this->assertEquals('www-data', $user['name']);
         $stat = stat('qux/qux1');
         $user = posix_getpwuid($stat['uid']);
-        $this->assertSame('www-data', $user['name']);
+        $this->assertEquals('www-data', $user['name']);
         $stat = stat('qux/qux1/qux2.f');
         $user = posix_getpwuid($stat['uid']);
-        $this->assertSame('www-data', $user['name']);
+        $this->assertEquals('www-data', $user['name']);
 
         FileSystemManager::rrmdir('qux');
     }
@@ -181,25 +181,25 @@ class FileSystemManagerTest extends \PHPUnit_Framework_TestCase
 
         $stat = stat('qux');
         $user = posix_getgrgid($stat['gid']);
-        $this->assertNotSame('www-data', $user['name']);
+        $this->assertNotEquals('www-data', $user['name']);
         $stat = stat('qux/qux1');
         $user = posix_getgrgid($stat['gid']);
-        $this->assertNotSame('www-data', $user['name']);
+        $this->assertNotEquals('www-data', $user['name']);
         $stat = stat('qux/qux1/qux2.f');
         $user = posix_getgrgid($stat['gid']);
-        $this->assertNotSame('www-data', $user['name']);
+        $this->assertNotEquals('www-data', $user['name']);
 
         $this->assertTrue(
             FileSystemManager::rchgrp('qux/qux1/qux2.f', 'www-data'));
         $stat = stat('qux');
         $user = posix_getgrgid($stat['gid']);
-        $this->assertSame('www-data', $user['name']);
+        $this->assertEquals('www-data', $user['name']);
         $stat = stat('qux/qux1');
         $user = posix_getgrgid($stat['gid']);
-        $this->assertSame('www-data', $user['name']);
+        $this->assertEquals('www-data', $user['name']);
         $stat = stat('qux/qux1/qux2.f');
         $user = posix_getgrgid($stat['gid']);
-        $this->assertSame('www-data', $user['name']);
+        $this->assertEquals('www-data', $user['name']);
 
         FileSystemManager::rrmdir('qux');
     }
