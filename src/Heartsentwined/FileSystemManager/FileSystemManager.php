@@ -100,6 +100,24 @@ class FileSystemManager
     {
         ArgValidator::assert($path, 'string');
         ArgValidator::assert($mode, 'numeric');
+
+        if (!is_dir($path)) return chmod($path, $mode);
+
+        $dh = opendir($path);
+        while (($file = readdir($dh)) !== false) {
+            if ($file != '.' && $file != '..') {
+                $file = "$path/$file";
+
+                if (is_link($file)) return false;
+                if (!is_dir($file) && !chmod($file, $mode)) return false;
+                if (!self::rchmod($file, $mode)) return false;
+            }
+        }
+        closedir($dh);
+
+        if (chmod($path, $mode)) return true;
+
+        return false;
     }
 
     public static function rchown($path, $owner)
