@@ -130,10 +130,10 @@ class FileSystemManagerTest extends \PHPUnit_Framework_TestCase
         touch('rchmod/rchmod1/rchmod2.f');
 
         $this->assertTrue(
-            FileSystemManager::rchmod('rchmod/rchmod1/rchmod2.f', 0444));
-        $this->assertEquals('1444',
+            FileSystemManager::rchmod('rchmod', 0444));
+        $this->assertEquals('0444',
             substr(sprintf('%o', fileperms('rchmod')), -4));
-        $this->assertEquals('1444',
+        $this->assertEquals('0444',
             substr(sprintf('%o', fileperms('rchmod/rchmod1')), -4));
         $this->assertEquals('0444',
             substr(sprintf('%o', fileperms('rchmod/rchmod1/rchmod2.f')), -4));
@@ -163,7 +163,7 @@ class FileSystemManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertNotEquals($this->user, $user['name']);
 
         $this->assertTrue(
-            FileSystemManager::rchown('rchown/rchown1/rchown2.f', $this->user));
+            FileSystemManager::rchown('rchown', $this->user));
         $stat = stat('rchown');
         $user = posix_getpwuid($stat['uid']);
         $this->assertEquals($this->user, $user['name']);
@@ -199,7 +199,7 @@ class FileSystemManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertNotEquals($this->user, $user['name']);
 
         $this->assertTrue(
-            FileSystemManager::rchgrp('rchgrp/rchgrp1/rchgrp2.f', $this->group));
+            FileSystemManager::rchgrp('rchgrp', $this->group));
         $stat = stat('rchgrp');
         $user = posix_getgrgid($stat['gid']);
         $this->assertEquals($this->user, $user['name']);
