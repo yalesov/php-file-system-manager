@@ -145,25 +145,25 @@ class FileSystemManagerTest extends \PHPUnit_Framework_TestCase
 
         $stat = stat('rchown');
         $user = posix_getpwuid($stat['uid']);
-        $this->assertNotEquals('www-data', $user['name']);
+        $this->assertNotEquals('nobody', $user['name']);
         $stat = stat('rchown/rchown1');
         $user = posix_getpwuid($stat['uid']);
-        $this->assertNotEquals('www-data', $user['name']);
+        $this->assertNotEquals('nobody', $user['name']);
         $stat = stat('rchown/rchown1/rchown2.f');
         $user = posix_getpwuid($stat['uid']);
-        $this->assertNotEquals('www-data', $user['name']);
+        $this->assertNotEquals('nobody', $user['name']);
 
         $this->assertTrue(
-            FileSystemManager::rchown('rchown/rchown1/rchown2.f', 'www-data'));
+            FileSystemManager::rchown('rchown/rchown1/rchown2.f', 'nobody'));
         $stat = stat('rchown');
         $user = posix_getpwuid($stat['uid']);
-        $this->assertEquals('www-data', $user['name']);
+        $this->assertEquals('nobody', $user['name']);
         $stat = stat('rchown/rchown1');
         $user = posix_getpwuid($stat['uid']);
-        $this->assertEquals('www-data', $user['name']);
+        $this->assertEquals('nobody', $user['name']);
         $stat = stat('rchown/rchown1/rchown2.f');
         $user = posix_getpwuid($stat['uid']);
-        $this->assertEquals('www-data', $user['name']);
+        $this->assertEquals('nobody', $user['name']);
 
         FileSystemManager::rrmdir('rchown');
     }
@@ -181,25 +181,25 @@ class FileSystemManagerTest extends \PHPUnit_Framework_TestCase
 
         $stat = stat('rchgrp');
         $user = posix_getgrgid($stat['gid']);
-        $this->assertNotEquals('www-data', $user['name']);
+        $this->assertNotEquals('nobody', $user['name']);
         $stat = stat('rchgrp/rchgrp1');
         $user = posix_getgrgid($stat['gid']);
-        $this->assertNotEquals('www-data', $user['name']);
+        $this->assertNotEquals('nobody', $user['name']);
         $stat = stat('rchgrp/rchgrp1/rchgrp2.f');
         $user = posix_getgrgid($stat['gid']);
-        $this->assertNotEquals('www-data', $user['name']);
+        $this->assertNotEquals('nobody', $user['name']);
 
         $this->assertTrue(
-            FileSystemManager::rchgrp('rchgrp/rchgrp1/rchgrp2.f', 'www-data'));
+            FileSystemManager::rchgrp('rchgrp/rchgrp1/rchgrp2.f', 'nobody'));
         $stat = stat('rchgrp');
         $user = posix_getgrgid($stat['gid']);
-        $this->assertEquals('www-data', $user['name']);
+        $this->assertEquals('nobody', $user['name']);
         $stat = stat('rchgrp/rchgrp1');
         $user = posix_getgrgid($stat['gid']);
-        $this->assertEquals('www-data', $user['name']);
+        $this->assertEquals('nobody', $user['name']);
         $stat = stat('rchgrp/rchgrp1/rchgrp2.f');
         $user = posix_getgrgid($stat['gid']);
-        $this->assertEquals('www-data', $user['name']);
+        $this->assertEquals('nobody', $user['name']);
 
         FileSystemManager::rrmdir('rchgrp');
     }
