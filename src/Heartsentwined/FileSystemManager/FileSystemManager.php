@@ -124,6 +124,24 @@ class FileSystemManager
     {
         ArgValidator::assert($path, 'string');
         ArgValidator::assert($owner, 'numeric');
+
+        if (!is_dir($path)) return chown($path, $owner);
+
+        $dh = opendir($path);
+        while (($file = readdir($dh)) !== false) {
+            if ($file != '.' && $file != '..') {
+                $file = "$path/$file";
+
+                if (is_link($file)) return false;
+                if (!is_dir($file) && !chown($file, $owner)) return false;
+                if (!self::rchown($file, $owner)) return false;
+            }
+        }
+        closedir($dh);
+
+        if (chown($path, $owner)) return true;
+
+        return false;
     }
 
     public static function rchgrp($path, $group)
