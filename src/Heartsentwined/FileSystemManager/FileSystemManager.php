@@ -105,7 +105,7 @@ class FileSystemManager
 
         $dh = opendir($path);
         while (($file = readdir($dh)) !== false) {
-            if ($file != '.' && $file != '..') {
+            if ($file !== '.' && $file !== '..') {
                 $file = "$path/$file";
 
                 if (is_link($file)) return false;
@@ -115,9 +115,7 @@ class FileSystemManager
         }
         closedir($dh);
 
-        if (chmod($path, $mode)) return true;
-
-        return false;
+        return chmod($path, $mode);
     }
 
     public static function rchown($path, $owner)
@@ -129,7 +127,7 @@ class FileSystemManager
 
         $dh = opendir($path);
         while (($file = readdir($dh)) !== false) {
-            if ($file != '.' && $file != '..') {
+            if ($file !== '.' && $file !== '..') {
                 $file = "$path/$file";
 
                 if (is_link($file)) return false;
@@ -139,14 +137,28 @@ class FileSystemManager
         }
         closedir($dh);
 
-        if (chown($path, $owner)) return true;
-
-        return false;
+        return chown($path, $owner);
     }
 
     public static function rchgrp($path, $group)
     {
         ArgValidator::assert($path, 'string');
         ArgValidator::assert($group, 'numeric');
+
+        if (!is_dir($path)) return chgrp($path, $group);
+
+        $dh = opendir($path);
+        while (($file = readdir($dh)) !== false) {
+            if ($file !== '.' && $file !== '..') {
+                $file = "$path/$file";
+
+                if (is_link($file)) return false;
+                if (!is_dir($file) && !chgrp($file, $group)) return false;
+                if (!self::rchgrp($file, $group)) return false;
+            }
+        }
+        closedir($dh);
+
+        return chgrp($path, $group);
     }
 }
