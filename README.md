@@ -36,14 +36,14 @@ foreach (FileSystemManager::dirIterator('foo') as $dir) {
 }
 ```
 
-Recursive [rmdir](http://php.net/manual/en/function.rmdir.php): remove the directory `foo` along with all child directoriess and files
+Recursive [rmdir](http://php.net/manual/en/function.rmdir.php): remove the directory `foo` along with all child directories and files
 
 ```php
 use \Heartsentwined\FileSystemManager\FileSystemManager;
 FileSystemManager::rrmdir('foo');
 ```
 
-Recursive [copy](http://php.net/manual/en/function.copy.php): copy the directory `foo` to `bar` along with all child directoriess and files
+Recursive [copy](http://php.net/manual/en/function.copy.php): copy the directory `foo` to `bar` along with all child directories and files
 
 **Warning: this function overwrites existing files**
 
@@ -58,21 +58,21 @@ FileSystemManager::rcopy('foo', 'bar');
 FileSystemManager::rcopy('foo', 'bar', 0777);
 ```
 
-Recursive [chmod](http://php.net/manual/en/function.chmod.php): chmod the directory `foo` to `0755`, along with all child directoriess and files
+Recursive [chmod](http://php.net/manual/en/function.chmod.php): chmod the directory `foo` to `0755`, along with all child directories and files
 
 ```php
 use \Heartsentwined\FileSystemManager\FileSystemManager;
 FileSystemManager::rchmod('foo', 0755);
 ```
 
-Recursive [chown](http://php.net/manual/en/function.chown.php): chown the directory `foo` to `www-data`, along with all child directoriess and files
+Recursive [chown](http://php.net/manual/en/function.chown.php): chown the directory `foo` to `www-data`, along with all child directories and files
 
 ```php
 use \Heartsentwined\FileSystemManager\FileSystemManager;
 FileSystemManager::rchown('foo', 'www-data');
 ```
 
-Recursive [chgrp](http://php.net/manual/en/function.chgrp.php): chgrp the directory `foo` to `www-data`, along with all child directoriess and files
+Recursive [chgrp](http://php.net/manual/en/function.chgrp.php): chgrp the directory `foo` to `www-data`, along with all child directories and files
 
 ```php
 use \Heartsentwined\FileSystemManager\FileSystemManager;
