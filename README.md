@@ -1,6 +1,6 @@
 # Yalesov\FileSystemManager
 
-[![Build Status](https://secure.travis-ci.org/yalesov/file-system-manager.png)](http://travis-ci.org/yalesov/file-system-manager)
+[![Build Status](https://travis-ci.org/yalesov/php-file-system-manager.svg)](https://travis-ci.org/yalesov/php-file-system-manager)
 
 A collection of often-used file and directory management functions not present in PHP core.
 
