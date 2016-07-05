@@ -191,15 +191,16 @@ class FileSystemManagerTest extends \PHPUnit_Framework_TestCase
     mkdir('rchgrp/rchgrp1', 0777, true);
     touch('rchgrp/rchgrp1/rchgrp2.f');
 
-    $stat = stat('rchgrp');
-    $user = posix_getgrgid($stat['gid']);
-    $this->assertNotEquals($this->user, $user['name']);
-    $stat = stat('rchgrp/rchgrp1');
-    $user = posix_getgrgid($stat['gid']);
-    $this->assertNotEquals($this->user, $user['name']);
-    $stat = stat('rchgrp/rchgrp1/rchgrp2.f');
-    $user = posix_getgrgid($stat['gid']);
-    $this->assertNotEquals($this->user, $user['name']);
+    // cannot reliably assert its belonging to another user as prior state
+    //$stat = stat('rchgrp');
+    //$user = posix_getgrgid($stat['gid']);
+    //$this->assertNotEquals($this->user, $user['name']);
+    //$stat = stat('rchgrp/rchgrp1');
+    //$user = posix_getgrgid($stat['gid']);
+    //$this->assertNotEquals($this->user, $user['name']);
+    //$stat = stat('rchgrp/rchgrp1/rchgrp2.f');
+    //$user = posix_getgrgid($stat['gid']);
+    //$this->assertNotEquals($this->user, $user['name']);
 
     $this->assertTrue(
       FileSystemManager::rchgrp('rchgrp', $this->group));
