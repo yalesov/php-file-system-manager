@@ -10,9 +10,9 @@ A collection of often-used file and directory management functions not present i
 
 ```json
 {
-    "require": {
-        "yalesov/file-system-manager": "2.*"
-    }
+  "require": {
+    "yalesov/file-system-manager": "2.*"
+  }
 }
 ```
 
@@ -23,7 +23,7 @@ Recursively iterate the directory `foo`, listing all files (child-last):
 ```php
 use \Yalesov\FileSystemManager\FileSystemManager;
 foreach (FileSystemManager::fileIterator('foo') as $file) {
-    echo $file; // /path/to/file
+  echo $file; // /path/to/file
 }
 ```
 
@@ -32,7 +32,7 @@ Recursively iterate the directory `foo`, listing all directories (child-first):
 ```php
 use \Yalesov\FileSystemManager\FileSystemManager;
 foreach (FileSystemManager::dirIterator('foo') as $dir) {
-    echo $dir; // /path/to/child/dir
+  echo $dir; // /path/to/child/dir
 }
 ```
 
