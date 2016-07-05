@@ -12,6 +12,9 @@
     "php": ">=5.3.3",
     "yalesov/arg-validator": "2.*"
   },
+  "require-dev": {
+    "phpunit/phpunit": "*"
+  },
   "autoload": {
     "psr-0": {
       "Yalesov\\FileSystemManager": "src/"
