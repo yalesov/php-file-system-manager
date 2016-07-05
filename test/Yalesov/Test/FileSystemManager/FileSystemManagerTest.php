@@ -20,8 +20,8 @@ class FileSystemManagerTest extends \PHPUnit_Framework_TestCase
     touch('foo/bar/bar1');
     mkdir('foo/baz');
 
-    $this->user = 'www-data';
-    $this->group = 'www-data';
+    $this->user = posix_getpwuid(posix_geteuid())['name'];
+    $this->group = posix_getgrgid(posix_getegid())['name'];
   }
 
   public function tearDown()
