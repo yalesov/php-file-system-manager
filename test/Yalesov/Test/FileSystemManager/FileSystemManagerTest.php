@@ -128,7 +128,7 @@ class FileSystemManagerTest extends \PHPUnit_Framework_TestCase
     $this->assertFalse(is_dir('rchmod'));
     $this->assertFalse(is_dir('rchmod1'));
     $this->assertFalse(is_dir('rchmod2.f'));
-    mkdir('rchmod/rchmod1', 0777, true);
+    mkdir('rchmod/rchmod1', 0700, true);
     touch('rchmod/rchmod1/rchmod2.f');
 
     $this->assertTrue(
