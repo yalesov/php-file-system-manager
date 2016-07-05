@@ -11,7 +11,7 @@ A collection of often-used file and directory management functions not present i
 ```json
 {
     "require": {
-        "yalesov/file-system-manager": "1.*"
+        "yalesov/file-system-manager": "2.*"
     }
 }
 ```
