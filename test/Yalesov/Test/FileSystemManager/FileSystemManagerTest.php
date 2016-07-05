@@ -154,15 +154,16 @@ class FileSystemManagerTest extends \PHPUnit_Framework_TestCase
     mkdir('rchown/rchown1', 0777, true);
     touch('rchown/rchown1/rchown2.f');
 
-    $stat = stat('rchown');
-    $user = posix_getpwuid($stat['uid']);
-    $this->assertNotEquals($this->user, $user['name']);
-    $stat = stat('rchown/rchown1');
-    $user = posix_getpwuid($stat['uid']);
-    $this->assertNotEquals($this->user, $user['name']);
-    $stat = stat('rchown/rchown1/rchown2.f');
-    $user = posix_getpwuid($stat['uid']);
-    $this->assertNotEquals($this->user, $user['name']);
+    // cannot reliably assert its belonging to another user as prior state
+    //$stat = stat('rchown');
+    //$user = posix_getpwuid($stat['uid']);
+    //$this->assertNotEquals($this->user, $user['name']);
+    //$stat = stat('rchown/rchown1');
+    //$user = posix_getpwuid($stat['uid']);
+    //$this->assertNotEquals($this->user, $user['name']);
+    //$stat = stat('rchown/rchown1/rchown2.f');
+    //$user = posix_getpwuid($stat['uid']);
+    //$this->assertNotEquals($this->user, $user['name']);
 
     $this->assertTrue(
       FileSystemManager::rchown('rchown', $this->user));
