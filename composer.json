@@ -1,31 +1,31 @@
 {
-    "name": "yalesov/file-system-manager",
-    "description": "A collection of file and directory management functions.",
-    "keywords": ["file", "directory", "dir", "manager", "system"],
-    "authors": [
-        {
-            "name": "Yulij Andreevich Lesov",
-            "email": "yalesov@gmail.com"
-        }
-    ],
-    "require": {
-        "php": ">=5.3.3",
-        "yalesov/arg-validator": "2.*"
-    },
-    "autoload": {
-        "psr-0": {
-            "Yalesov\\FileSystemManager": "src/"
-        }
-    },
-    "license": "ISC",
-    "homepage": "https://github.com/yalesov/php-file-system-manager",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/yalesov/php-file-system-manager"
-        }
-    ],
-    "support": {
-        "issues": "https://github.com/yalesov/php-file-system-manager/issues"
+  "name": "yalesov/file-system-manager",
+  "description": "A collection of file and directory management functions.",
+  "keywords": ["file", "directory", "dir", "manager", "system"],
+  "authors": [
+    {
+      "name": "Yulij Andreevich Lesov",
+      "email": "yalesov@gmail.com"
     }
+  ],
+  "require": {
+    "php": ">=5.3.3",
+    "yalesov/arg-validator": "2.*"
+  },
+  "autoload": {
+    "psr-0": {
+      "Yalesov\\FileSystemManager": "src/"
+    }
+  },
+  "license": "ISC",
+  "homepage": "https://github.com/yalesov/php-file-system-manager",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/yalesov/php-file-system-manager"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/yalesov/php-file-system-manager/issues"
+  }
 }
