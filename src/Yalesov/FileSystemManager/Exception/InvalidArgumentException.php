@@ -1,7 +1,7 @@
 <?php
-namespace Heartsentwined\FileSystemManager\Exception;
+namespace Yalesov\FileSystemManager\Exception;
 
-use Heartsentwined\FileSystemManager\ExceptionInterface;
+use Yalesov\FileSystemManager\ExceptionInterface;
 
 class InvalidArgumentException
     extends \InvalidArgumentException

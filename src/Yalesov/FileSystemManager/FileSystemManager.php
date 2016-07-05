@@ -1,7 +1,7 @@
 <?php
-namespace Heartsentwined\FileSystemManager;
+namespace Yalesov\FileSystemManager;
 
-use Heartsentwined\ArgValidator\ArgValidator;
+use Yalesov\ArgValidator\ArgValidator;
 
 class FileSystemManager
 {

@@ -1,8 +1,8 @@
 <?php
-namespace Heartsentwined\Test\FileSystemManager;
+namespace Yalesov\Test\FileSystemManager;
 
-use Heartsentwined\FileSystemManager\FileSystemManager;
-use Heartsentwined\FileSystemManager\Exception;
+use Yalesov\FileSystemManager\FileSystemManager;
+use Yalesov\FileSystemManager\Exception;
 
 class FileSystemManagerTest extends \PHPUnit_Framework_TestCase
 {
