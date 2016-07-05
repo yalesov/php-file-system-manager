@@ -1,9 +1,10 @@
 language: php
+sudo: required
 php:
   - "5.3"
   - "5.4"
 before_script: composer install
-script: sudo phpunit --configuration test/phpunit.xml
+script: phpunit --configuration test/phpunit.xml
 notifications:
   email:
     on_success: always
